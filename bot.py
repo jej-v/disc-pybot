@@ -18,7 +18,7 @@ with open('quotes.txt', 'r') as f:
 async def on_ready():
     print('Bot is online!')
 
-# To prevent spamming the cmd with CommandNotFound errors
+# To prevent spamming the terminal with CommandNotFound errors
 @bot.event
 async def on_command_error(ctx,error):
     if isinstance(error, commands.CommandNotFound):
@@ -122,7 +122,7 @@ async def help(ctx):
 `!info @Someone` - I'll show Someone's info.''', inline=False)
     embed.add_field(name="Fun Commands", value='''
 `!ping` - Pong!
-`!q` I will say random quotes!
+`!q` - I will say random quotes!
 `!8ball` - Ask me anything!
 `!choose` - Let me decide for you. Usage: `!choose <option1> or <option2> or..`''', inline=False)
 
