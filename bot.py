@@ -15,13 +15,13 @@ async def on_ready():
     print('Bot is online!')
 
 # ping
-@bot.slash_command(guild_ids=[697938708174733454])  # create a slash command for the supplied guilds
+@bot.slash_command(guild_ids=[your_guild_ids_here])  # create a slash command for the supplied guilds
 async def ping(ctx):
     """ping pong"""  # description
     await ctx.respond("Pong!")
 
 # quotes
-@bot.slash_command(guild_ids=[697938708174733454])
+@bot.slash_command(guild_ids=[your_guild_ids_here]])
 async def q(ctx):
     """Just Quotes from taglines.txt on textfiles.com"""
     x = random.randint(0,len(all_lines)-1)
@@ -29,7 +29,7 @@ async def q(ctx):
 
 
 # info command w option
-@bot.slash_command(guild_ids=[697938708174733454])
+@bot.slash_command(guild_ids=[your_guild_ids_here]])
 async def info(
     ctx: discord.ApplicationContext,
     member: Option(discord.Member, "member", required=False)):
@@ -56,7 +56,7 @@ async def info(
     await ctx.respond(embed=embed)
 
 # Help Command
-@bot.slash_command(guild_ids=[697938708174733454])
+@bot.slash_command(guild_ids=[your_guild_ids_here]])
 async def help(ctx):
     """Shows the command list."""
     embed = discord.Embed(
