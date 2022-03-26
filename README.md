@@ -1,8 +1,8 @@
 # Discord Python Bot
 
-This repository was created for the sole reason of being as 'a basic template' a discord bot.
+Just a discord bot example kek.
 
-What does it do? (WIP)
+What does it do? (WIP - switched over to slash commands)
 
 ![image](https://user-images.githubusercontent.com/64602039/120628210-15229780-c46d-11eb-9969-a8f7599c6705.png)
 
