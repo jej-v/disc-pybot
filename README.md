@@ -25,10 +25,7 @@ python3 -m pip install -U discord.py
 # Windows (on cmd, after you've installed Python)
 py -3 -m pip install -U discord.py
 ```
-`No module named discord`
-```bash
-pip install discord
-```
+
 **py-cord module**
 ```bash
 # Linux/macOS
@@ -45,6 +42,18 @@ python3 bot.py
 # Windows
 py bot.py
 ```
+**A text editor**
+
+There are many available text editors you can find on the web. I'd recommend
+using **atom.io**, but any text editor will do! Even the regular Notepad, but
+don't use it, *just don't*.
+
+# Troubleshooting
+`No module named discord`
+```bash
+pip install discord
+```
+
 If you encounter an `Import/Module error` after running the bot, try 
 ```bash
 # Linux
@@ -53,11 +62,6 @@ pip install --upgrade --no-deps --force-reinstall pycord
 # Windows
 py -m pip install --upgrade --no-deps --force-reinstall pycord
 ```
-**A text editor**
-
-There are many available text editors you can find on the web. I'd recommend
-using **atom.io**, but any text editor will do! Even the regular Notepad, but
-don't use it, *just don't*.
 
 # Notes
 Slash commands work immediately if the guild ids are provided, otherwise it will be considered as "public slash command" and it will take up an hour to work.
