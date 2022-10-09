@@ -1,6 +1,7 @@
 import discord
 import random
 from discord.commands import Option
+from image_draw import senti
 
 bot = discord.Bot()
 
@@ -13,14 +14,15 @@ with open('quotes.txt', 'r') as f:
 async def on_ready():
     print('Bot is online!')
 
+your_guild_ids_here = []
 # ping
-@bot.slash_command(guild_ids=[your_guild_ids_here])  # create a slash command for the supplied guilds
+@bot.slash_command(guild_ids= your_guild_ids_here)  # create a slash command for the supplied guilds
 async def ping(ctx):
     """ping pong"""  # description
     await ctx.respond("Pong!")
 
 # quotes
-@bot.slash_command(guild_ids=[your_guild_ids_here])
+@bot.slash_command(guild_ids= your_guild_ids_here)
 async def q(ctx):
     """Just Quotes from taglines.txt on textfiles.com"""
     x = random.randint(0,len(all_lines)-1)
@@ -28,7 +30,7 @@ async def q(ctx):
 
 
 # info command w option
-@bot.slash_command(guild_ids=[your_guild_ids_here])
+@bot.slash_command(guild_ids= your_guild_ids_here)
 async def info(
     ctx: discord.ApplicationContext,
     member: Option(discord.Member, "member", required=False)):
@@ -54,8 +56,33 @@ async def info(
 
     await ctx.respond(embed=embed)
 
+# Yatta
+@bot.slash_command(guild_ids = your_guild_ids_here)
+async def yatta(
+    ctx: discord.ApplicationContext,
+    member: Option(discord.Member, "member", required=False)):
+    """Get Yatta'd"""
+
+    if member is None:
+        member = ctx.author
+
+    url = str(member.avatar)
+    senti(url)
+    await ctx.respond("Loading....")
+    embed = discord.Embed (
+        title = 'I will reverse all creations!',
+        description = "",
+        colour = discord.Colour.from_rgb(247, 168, 178)
+    )
+
+    file = discord.File("senti_result.png", filename="senti_result.png")
+    embed.set_image(url="attachment://senti_result.png")
+    embed.set_footer(text="Hacktoberfest 2022 <3")
+    await ctx.edit(content=None, file=file, embed=embed)
+
+
 # Help Command
-@bot.slash_command(guild_ids=[your_guild_ids_here])
+@bot.slash_command(guild_ids= your_guild_ids_here)
 async def help(ctx):
     """Shows the command list."""
     embed = discord.Embed(
