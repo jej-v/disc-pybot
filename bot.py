@@ -1,7 +1,7 @@
 import discord
 import random
 from discord.commands import Option
-from image_draw import senti
+from image_draw import senti, pinkuwu, pinkuwu_member
 
 bot = discord.Bot()
 
@@ -55,6 +55,23 @@ async def info(
     embed.add_field(name="Is a bot?", value=str(member.bot) ,inline=False)
 
     await ctx.respond(embed=embed)
+
+# uwu
+@bot.slash_command(guild_ids = your_guild_ids_here)
+async def uwu(
+    ctx: discord.ApplicationContext,
+    member: Option(discord.Member, "member", required=False)):
+    """Uwus you or @"""
+    await ctx.respond("Uwuing......")
+
+    if member is None:
+        member = ctx.author
+
+    url = str(member.avatar)
+    pinkuwu_member(url)
+
+    file = discord.File('uwout.png', filename='uwout.png')
+    await ctx.edit(content=None, file=file)
 
 # Yatta
 @bot.slash_command(guild_ids = your_guild_ids_here)
