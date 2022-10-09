@@ -28,6 +28,7 @@ async def q(ctx):
     x = random.randint(0,len(all_lines)-1)
     await ctx.respond(all_lines[x])
 
+
 # info command w option
 @bot.slash_command(guild_ids= your_guild_ids_here)
 async def info(
