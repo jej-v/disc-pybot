@@ -55,6 +55,23 @@ async def info(
 
     await ctx.respond(embed=embed)
 
+# uwu
+@bot.slash_command(guild_ids = guild_ids)
+async def uwu(
+    ctx: discord.ApplicationContext,
+    member: Option(discord.Member, "member", required=False)):
+    """Uwus you or @"""
+    await ctx.respond("Uwuing......")
+
+    if member is None:
+        member = ctx.author
+
+    url = str(member.avatar)
+    pinkuwu_member(url)
+
+    file = discord.File('uwout.png', filename='uwout.png')
+    await ctx.edit(content=None, file=file)
+
 # Yatta
 @bot.slash_command(guild_ids = your_guild_ids_here)
 async def yatta(
