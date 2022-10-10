@@ -1,7 +1,6 @@
-from PIL import Image,ImageDraw, ImageChops
+from PIL import Image, ImageDraw, ImageChops
 import io
 from urllib.request import urlopen, Request
-
 
 def pinkuwu(image):
     with Image.open(image).convert("RGBA") as base:
@@ -14,8 +13,18 @@ def pinkuwu(image):
         out = ImageChops.overlay(base, ov)
         out.save('uwout.png')
 
-def pinkuwu_member(image):
-    with Image.open(urlopen(Request(image, headers={'User-Agent': 'Mozilla'}))).convert("RGBA") as base:
+def pinkuwu_member(url):
+    """
+    Making the Discord User's profile picture more 'pink'
+
+    Arguments:
+        url: the url leading directly to the User's profile picture
+
+    Returns:
+        Sends and saves the image created, can be overwritten locally if
+        it's run more than one times.
+    """
+    with Image.open(urlopen(Request(url, headers={'User-Agent': 'Mozilla'}))).convert("RGBA") as base:
         # make a blank image for the uwu, initialized to transparent text color
         ov = Image.new("RGBA", base.size, (255, 255, 255, 0))
 
@@ -26,6 +35,16 @@ def pinkuwu_member(image):
         out.save('uwout.png')
 
 def senti(url):
+    """
+    Adding the Discord User's profile picture onto senti.png picture.
+
+    Arguments:
+        url: the url leading directly to the User's profile picture
+
+    Returns:
+        Sends and saves the image created, can be overwritten locally if
+        it's run more than one times.
+    """
     bg = Image.open('senti.png')
     img = Image.open(urlopen(Request(url, headers={'User-Agent': 'Mozilla'}))).resize((170,170))
 

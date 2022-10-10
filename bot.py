@@ -5,7 +5,7 @@ from image_draw import senti, pinkuwu, pinkuwu_member
 
 bot = discord.Bot()
 
-#Just Quotes from taglines.txt on textfiles.com
+# Just Quotes from taglines.txt on textfiles.com
 with open('quotes.txt', 'r') as f:
     all_lines = f.readlines()
 
@@ -14,9 +14,16 @@ with open('quotes.txt', 'r') as f:
 async def on_ready():
     print('Bot is online!')
 
+
+"""
+    # supply the guild ids for the slash commands
+    # if left empty, it will be considered as "public
+    # slash command" and it will take up an hour to work.
+"""
 your_guild_ids_here = []
+
 # ping
-@bot.slash_command(guild_ids= your_guild_ids_here)  # create a slash command for the supplied guilds
+@bot.slash_command(guild_ids= your_guild_ids_here)
 async def ping(ctx):
     """ping pong"""  # description
     await ctx.respond("Pong!")
@@ -56,12 +63,34 @@ async def info(
 
     await ctx.respond(embed=embed)
 
+# choose
+@bot.slash_command(guild_ids = your_guild_ids_here)
+async def choose(
+    ctx: discord.ApplicationContext,
+    text: Option(str, "Enter your text")):
+    """Let the Bot decide for you~"""
+
+    author_name = ctx.author.name
+    #split the text
+    if ' or ' in text:
+        options = text.split(' or ')
+        decision = random.randint(0,len(options)-1)
+        embed = discord.Embed(
+            title = ":eyes: It's been decided, " + author_name,
+            description = "I choose... **" + options[decision] + "**.",
+            colour = discord.Colour.from_rgb(50, 205, 50)
+        )
+        await ctx.respond(embed=embed)
+
+    else:
+        await ctx.respond('I don\'t understand, ' + author_name + '. Usage: `/choose <option1> or <option2>`')
+
 # uwu
 @bot.slash_command(guild_ids = your_guild_ids_here)
 async def uwu(
     ctx: discord.ApplicationContext,
     member: Option(discord.Member, "member", required=False)):
-    """Uwus you or @"""
+    """Uwus you or @Someone"""
     await ctx.respond("Uwuing......")
 
     if member is None:
@@ -115,6 +144,9 @@ async def help(ctx):
 `/info @Someone` - I'll show Someone's info.''', inline=False)
     embed.add_field(name="Fun Commands", value='''
 `/ping` - Pong!
+`/choose` - Let the Bot decide for you. Usage: `/choose <option1> or <option2>`
+`/yatta` - Get Yatta'd
+`/uwu` - Get Elysia'd
 `/q` - I will say random quotes!''', inline=False)
 
     await ctx.respond(embed=embed)
