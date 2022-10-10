@@ -2,8 +2,18 @@ from PIL import Image, ImageDraw, ImageChops
 import io
 from urllib.request import urlopen, Request
 
+def pinkuwu(image):
+    with Image.open(image).convert("RGBA") as base:
+        # make a blank image for the uwu, initialized to transparent text color
+        ov = Image.new("RGBA", base.size, (255, 255, 255, 0))
 
-def pinkuwu(url):
+        draw = ImageDraw.Draw(ov)
+        draw.rectangle([(0,0), base.size], (242,202,244))
+
+        out = ImageChops.overlay(base, ov)
+        out.save('uwout.png')
+
+def pinkuwu_member(url):
     """
     Making the Discord User's profile picture more 'pink'
 

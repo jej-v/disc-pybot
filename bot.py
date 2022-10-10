@@ -1,7 +1,7 @@
 import discord
 import random
 from discord.commands import Option
-from image_draw import senti, pinkuwu
+from image_draw import senti, pinkuwu, pinkuwu_member
 
 bot = discord.Bot()
 
@@ -15,9 +15,13 @@ async def on_ready():
     print('Bot is online!')
 
 
-your_guild_ids_here = [] # supply the guild ids for the slash commands
-                         # if left empty, it will be considered as "public
-                         # slash command" and it will take up an hour to work.
+"""
+    # supply the guild ids for the slash commands
+    # if left empty, it will be considered as "public
+    # slash command" and it will take up an hour to work.
+"""
+your_guild_ids_here = []
+
 # ping
 @bot.slash_command(guild_ids= your_guild_ids_here)
 async def ping(ctx):
@@ -92,7 +96,7 @@ async def uwu(
         member = ctx.author
 
     url = str(member.avatar)
-    pinkuwu(url)
+    pinkuwu_member(url)
 
     file = discord.File('uwout.png', filename='uwout.png')
     await ctx.edit(content=None, file=file)
