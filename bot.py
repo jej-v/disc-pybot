@@ -1,7 +1,7 @@
 import discord
 import random
 from discord.commands import Option
-from image_draw import senti, pinkuwu, pinkuwu_member
+from image_draw import senti, pinkuwu
 
 bot = discord.Bot()
 
@@ -60,14 +60,14 @@ async def info(
 async def uwu(
     ctx: discord.ApplicationContext,
     member: Option(discord.Member, "member", required=False)):
-    """Uwus you or @"""
+    """Uwus you or @Someone"""
     await ctx.respond("Uwuing......")
 
     if member is None:
         member = ctx.author
 
     url = str(member.avatar)
-    pinkuwu_member(url)
+    pinkuwu(url)
 
     file = discord.File('uwout.png', filename='uwout.png')
     await ctx.edit(content=None, file=file)
