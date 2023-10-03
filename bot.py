@@ -28,6 +28,13 @@ async def ping(ctx):
     """ping pong"""  # description
     await ctx.respond("Pong!")
 
+# dice roller
+@bot.slash_command(guild_ids= your_guild_ids_here)
+async def dice(ctx):
+    "Roll from 1 to 6, 7 if you're lucky"
+    dice = random.randrange(1, 7)
+    await ctx.respond(dice)
+    
 # quotes
 @bot.slash_command(guild_ids= your_guild_ids_here)
 async def q(ctx):
