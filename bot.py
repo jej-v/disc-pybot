@@ -50,7 +50,7 @@ async def info(
         colour = discord.Colour.from_rgb(216, 195, 224)
         )
 
-        #embed.set_footer(text="A footer")
+    embed.set_footer(text="A footer")
     embed.set_thumbnail(url= str(member.avatar))
 
     embed.add_field(name="Nickname:", value=str(member.display_name) ,inline=False)
